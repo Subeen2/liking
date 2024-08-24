@@ -16,7 +16,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  console.log(children);
+  // TODO :: 일단 header, footer 여기에 두고 페이지 별로 헤더 푸터가 유동적으로 사용해야 하는지 판단 후 구조 변경
   return (
     <html lang="en">
       <body className={inter.className}>
