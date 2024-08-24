@@ -8,6 +8,7 @@ const config: Config = {
   ],
   theme: {
     colors: {
+      // 이거 명칭 기존대로 하는게 좋을까?
       main200: "#CAF4FF",
       main300: "#A0DEFF",
       main400: "#5AB2FF",
