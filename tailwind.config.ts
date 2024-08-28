@@ -9,10 +9,13 @@ const config: Config = {
   theme: {
     colors: {
       // 이거 명칭 기존대로 하는게 좋을까?
+      main100: "rgb(231 250 255)",
       main200: "#CAF4FF",
       main300: "#A0DEFF",
       main400: "#5AB2FF",
+      second100: "rgb(255 251 224)",
       second200: "#FFF9D0",
+      white: "#FFFFFF",
     },
     extend: {
       backgroundImage: {

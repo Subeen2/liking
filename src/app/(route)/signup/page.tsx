@@ -1,9 +1,9 @@
 import React from "react";
 
-export default function Home() {
+export default function SignUp() {
   return (
-    <div className="flex flex-col text-center">
-      <h1 className="text-3xl font-bold  my-9">회원가입</h1>
+    <div className="flex flex-col text-center py-xl">
+      <h1 className="text-3xl font-bold  mb-[70px]">회원가입</h1>
       <div className="flex flex-row w-full justify-center text-left">
         <form className="flex flex-col justify-center gap-6 w-full mb-6 max-w-lg">
           <div className="flex flex-col">
@@ -60,6 +60,12 @@ export default function Home() {
               />
             </div>
           </div>
+          <button
+            type="submit"
+            className="w-full mt-1 py-3 text-lg bg-main400 text-white rounded-lg"
+          >
+            가입하기
+          </button>
         </form>
       </div>
     </div>

@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <footer className="bg-main200 hidden md:block bg-[url('/img/bg-footer.svg')] bg-no-repeat bg-center bg-cover pt-[110px] pb-[90px] absolute bottom-0 left-0 right-0">
+    <footer className="mt-[100px] bg-main100 hidden md:block bg-[url('/img/bg-footer.svg')] bg-no-repeat bg-center bg-cover pt-[110px] pb-[90px] bottom-0 left-0 right-0">
       <div className="container mx-auto w-full max-w-[1024px] px-[16px] lg:px-0">
         <h1 className="text-[20px] font-bold">
           <a href="/">
