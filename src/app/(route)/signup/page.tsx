@@ -9,7 +9,7 @@ export default function SignUp() {
           <div className="flex flex-col">
             <label
               className="ml-1 mb-2 font-bold text-[16px]"
-              htmlFor=":R3afnnj7puba:"
+              htmlFor="nickname"
             >
               닉네임
             </label>
@@ -18,17 +18,14 @@ export default function SignUp() {
                 className="h-[48px] px-4 w-full rounded-lg border md:text-[16px] text-[14px] placeholder-gray-2 focus:outline-none focus:border-gray-3 transition border-gray-2"
                 type="text"
                 placeholder="라이킹에서 사용할 닉네임을 적어주세요"
-                id=":R3afnnj7puba:"
+                id="nickname"
                 name="nickname"
                 value=""
               />
             </div>
           </div>
           <div className="flex flex-col">
-            <label
-              className="ml-1 mb-2 font-bold text-[16px]"
-              htmlFor=":R3afnnj7puba:"
-            >
+            <label className="ml-1 mb-2 font-bold text-[16px]" htmlFor="email">
               이메일
             </label>
             <div className="relative">
@@ -36,8 +33,8 @@ export default function SignUp() {
                 className="h-[48px] px-4 w-full rounded-lg border md:text-[16px] text-[14px] placeholder-gray-2 focus:outline-none focus:border-gray-3 transition border-gray-2"
                 type="text"
                 placeholder="라이킹에서 사용할 이메일을 적어주세요"
-                id=":R3afnnj7puba:"
-                name="nickname"
+                id="email"
+                name="email"
                 value=""
               />
             </div>
@@ -45,7 +42,7 @@ export default function SignUp() {
           <div className="flex flex-col">
             <label
               className="ml-1 mb-2 font-bold text-[16px]"
-              htmlFor=":R3afnnj7puba:"
+              htmlFor="password"
             >
               비밀번호
             </label>
@@ -54,8 +51,8 @@ export default function SignUp() {
                 className="h-[48px] px-4 w-full rounded-lg border md:text-[16px] text-[14px] placeholder-gray-2 focus:outline-none focus:border-gray-3 transition border-gray-2"
                 type="text"
                 placeholder="라이킹에서 사용할 비밀번호를 적어주세요"
-                id=":R3afnnj7puba:"
-                name="nickname"
+                id="password"
+                name="password"
                 value=""
               />
             </div>

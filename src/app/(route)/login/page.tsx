@@ -19,7 +19,7 @@ export default function LogIn() {
                 type="text"
                 placeholder="이메일을 입력해주세요"
                 id=":R3afnnj7puba:"
-                name="nickname"
+                name="email"
                 value=""
               />
             </div>
@@ -37,7 +37,7 @@ export default function LogIn() {
                 type="text"
                 placeholder="비밀번호를 입력해주세요"
                 id=":R3afnnj7puba:"
-                name="nickname"
+                name="password"
                 value=""
               />
             </div>
