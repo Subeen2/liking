@@ -1,11 +1,39 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
+import { emailRegEx } from "@/utils/regex";
 
 export default function LogIn() {
+  const [error, setError] = useState({
+    emailError: "",
+    passwordError: "",
+  });
+
+  const handleLoginSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const loginData = { email, password };
+
+    if (!emailRegEx.test(email)) {
+      setError((prev) => ({
+        ...prev,
+        emailError: "정확하지 않은 이메일입니다.",
+      }));
+
+      return;
+    }
+
+    // mock API 호출
+  };
+
   return (
     <div className="flex flex-col text-center py-xl">
       <h1 className="text-3xl font-bold  mb-[70px]">로그인</h1>
       <div className="flex flex-row w-full justify-center text-left">
-        <form className="flex flex-col justify-center gap-6 w-full mb-6 max-w-lg">
+        <form
+          className="flex flex-col justify-center gap-6 w-full mb-6 max-w-lg"
+          onSubmit={handleLoginSubmit}
+        >
           <div className="flex flex-col">
             <label
               className="ml-1 mb-2 font-bold text-[16px]"
@@ -20,7 +48,7 @@ export default function LogIn() {
                 placeholder="이메일을 입력해주세요"
                 id=":R3afnnj7puba:"
                 name="email"
-                value=""
+                value={email}
               />
             </div>
           </div>
@@ -38,7 +66,7 @@ export default function LogIn() {
                 placeholder="비밀번호를 입력해주세요"
                 id=":R3afnnj7puba:"
                 name="password"
-                value=""
+                value={password}
               />
             </div>
           </div>
@@ -48,7 +76,7 @@ export default function LogIn() {
           >
             로그인
           </button>
-          <a className="w-full" href="/join">
+          <a className="w-full" href="/signup">
             <button className="flex items-center justify-center text-lg border border-gray-2 py-2 rounded-3xl font-medium w-full sm:py-2 sm:text-base md:text-md">
               회원가입
             </button>
