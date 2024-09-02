@@ -12,16 +12,16 @@ export default function LogIn() {
   const handleLoginSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const loginData = { email, password };
+    // const loginData = { email, password };
 
-    if (!emailRegEx.test(email)) {
-      setError((prev) => ({
-        ...prev,
-        emailError: "정확하지 않은 이메일입니다.",
-      }));
+    // if (!emailRegEx.test(email)) {
+    //   setError((prev) => ({
+    //     ...prev,
+    //     emailError: "정확하지 않은 이메일입니다.",
+    //   }));
 
-      return;
-    }
+    //   return;
+    // }
 
     // mock API 호출
   };
@@ -48,7 +48,7 @@ export default function LogIn() {
                 placeholder="이메일을 입력해주세요"
                 id=":R3afnnj7puba:"
                 name="email"
-                value={email}
+                // value={email}
               />
             </div>
           </div>
@@ -66,7 +66,7 @@ export default function LogIn() {
                 placeholder="비밀번호를 입력해주세요"
                 id=":R3afnnj7puba:"
                 name="password"
-                value={password}
+                // value={password}
               />
             </div>
           </div>
