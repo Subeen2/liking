@@ -2,6 +2,7 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
+import ClientLayout from "./ClientLayout";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -26,7 +27,7 @@ const RootLayout = ({
     <html lang="en">
       <body className={inter.className}>
         <Header />
-        {children}
+        <ClientLayout>{children}</ClientLayout>
         <Footer />
       </body>
     </html>
