@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const userAuthSlices = createSlice({
-  name: "user",
+  name: "user", // slice 식별
   initialState: { name: "subeen" },
   reducers: {
     setUserAuth: (state, action) => {
