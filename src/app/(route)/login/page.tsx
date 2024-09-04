@@ -55,7 +55,7 @@ export default function LogIn() {
           <div className="flex flex-col">
             <label
               className="ml-1 mb-2 font-bold text-[16px]"
-              htmlFor=":R3afnnj7puba:"
+              htmlFor=":R3afnnj7pubb:"
             >
               비밀번호
             </label>
@@ -64,7 +64,7 @@ export default function LogIn() {
                 className="h-[48px] px-4 w-full rounded-lg border md:text-[16px] text-[14px] placeholder-gray-2 focus:outline-none focus:border-gray-3 transition border-gray-2"
                 type="text"
                 placeholder="비밀번호를 입력해주세요"
-                id=":R3afnnj7puba:"
+                id=":R3afnnj7pubb:"
                 name="password"
                 // value={password}
               />
