@@ -2,11 +2,19 @@
 
 import React, { useState } from "react";
 import { emailRegEx } from "@/utils/regex";
+import { useRouter } from "next/router";
+import { useInput } from "@/hooks/useInput";
 
 export default function LogIn() {
+  const router = useRouter();
   const [error, setError] = useState({
     emailError: "",
     passwordError: "",
+  });
+
+  const { values: input, handler: onChangeInput } = useInput({
+    email: "",
+    password: "",
   });
 
   const handleLoginSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -48,6 +56,7 @@ export default function LogIn() {
                 placeholder="이메일을 입력해주세요"
                 id=":R3afnnj7puba:"
                 name="email"
+                onChange={onChangeInput}
                 // value={email}
               />
             </div>
@@ -66,6 +75,7 @@ export default function LogIn() {
                 placeholder="비밀번호를 입력해주세요"
                 id=":R3afnnj7pubb:"
                 name="password"
+                onChange={onChangeInput}
                 // value={password}
               />
             </div>
