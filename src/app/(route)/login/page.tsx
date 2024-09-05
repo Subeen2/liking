@@ -6,7 +6,8 @@ import { useRouter } from "next/router";
 import { useInput } from "@/hooks/useInput";
 
 export default function LogIn() {
-  const router = useRouter();
+  // 클라이언트에서만 사용
+  //   const router = useRouter();
   const [error, setError] = useState({
     emailError: "",
     passwordError: "",
@@ -32,6 +33,8 @@ export default function LogIn() {
     // }
 
     // mock API 호출
+
+    // router.push("/");
   };
 
   return (
