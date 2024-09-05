@@ -27,18 +27,19 @@ export default function LogIn() {
   const handleLoginSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // const loginData = { email, password };
+    const loginData = { email, password };
 
-    // if (!emailRegEx.test(email)) {
-    //   setError((prev) => ({
-    //     ...prev,
-    //     emailError: "정확하지 않은 이메일입니다.",
-    //   }));
+    if (!emailRegEx.test(email)) {
+      setError((prev) => ({
+        ...prev,
+        emailError: "정확하지 않은 이메일입니다.",
+      }));
 
-    //   return;
-    // }
+      return;
+    }
 
     // mock API 호출
+    // redux에 저장
 
     // router.push("/");
   };
