@@ -14,7 +14,7 @@ interface InputProps {
   defaultValue?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   error?: string;
-  setPasswordType?: React.Dispatch<React.SetStateAction<boolean>>;
+  setPasswordHide?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const variantStyles = {
@@ -36,7 +36,7 @@ const InputField = forwardRef<HTMLInputElement, InputProps>(function Input(
     onChange,
     readOnly = false,
     error,
-    setPasswordType,
+    setPasswordHide,
     defaultValue,
   },
   ref
@@ -44,9 +44,9 @@ const InputField = forwardRef<HTMLInputElement, InputProps>(function Input(
   // 전역적으로 고유한 ID를 생성하여 서버와 클라이언트 간의 ID 불일치를 방지하기 위해 사용
   const inputId = useId();
 
-  const onToggleHide = () => {
-    if (setPasswordType) {
-      setPasswordType((prev) => !prev);
+  const hideHandler = () => {
+    if (setPasswordHide) {
+      setPasswordHide((prev) => !prev);
     }
   };
 
@@ -86,22 +86,22 @@ const InputField = forwardRef<HTMLInputElement, InputProps>(function Input(
             id={inputId}
             defaultValue={defaultValue}
           />
-          {setPasswordType && (
+          {setPasswordHide && (
             <button
-              onClick={onToggleHide}
+              onClick={hideHandler}
               type="button"
               className="absolute right-4 top-[14px]"
             >
               {type === "text" ? (
                 <Image
-                  src="/icons/eye-slash-regular.svg"
+                  src="/icons/eye-regular.svg"
                   alt="눈 아이콘"
                   width={20}
                   height={20}
                 />
               ) : (
                 <Image
-                  src="/img/icon-eye-see.png"
+                  src="/icons/eye-slash-regular.svg"
                   alt="눈 아이콘"
                   width={20}
                   height={20}
@@ -113,7 +113,6 @@ const InputField = forwardRef<HTMLInputElement, InputProps>(function Input(
       )}
       {type === "file" && (
         <input
-          // 4. ref 담기
           ref={ref}
           type="file"
           className={`${variantStyles[variant]} text-[10px] py-[10px]`}

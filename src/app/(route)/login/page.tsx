@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { emailRegEx } from "@/utils/regex";
 import { useRouter } from "next/router";
 import { useInput } from "@/hooks/useInput";
+import InputField from "@/components/inputField/field/InputField";
 
 export default function LogIn() {
   // 클라이언트에서만 사용
@@ -17,6 +18,11 @@ export default function LogIn() {
     email: "",
     password: "",
   });
+
+  // 비밀번호 show / hide
+  const [passwordHide, setPasswordHide] = useState(true);
+
+  const { email, password } = input;
 
   const handleLoginSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -46,42 +52,27 @@ export default function LogIn() {
           onSubmit={handleLoginSubmit}
         >
           <div className="flex flex-col">
-            <label
-              className="ml-1 mb-2 font-bold text-[16px]"
-              htmlFor=":R3afnnj7puba:"
-            >
-              이메일
-            </label>
-            <div className="relative">
-              <input
-                className="h-[48px] px-4 w-full rounded-lg border md:text-[16px] text-[14px] placeholder-gray-2 focus:outline-none focus:border-gray-3 transition border-gray-2"
-                type="text"
-                placeholder="이메일을 입력해주세요"
-                id=":R3afnnj7puba:"
-                name="email"
-                onChange={onChangeInput}
-                // value={email}
-              />
-            </div>
+            <InputField
+              label="이메일"
+              type="text"
+              value={email}
+              name="email"
+              placeholder="이메일 주소를 입력해주세요"
+              onChange={onChangeInput}
+              error={error.emailError}
+            />
           </div>
           <div className="flex flex-col">
-            <label
-              className="ml-1 mb-2 font-bold text-[16px]"
-              htmlFor=":R3afnnj7pubb:"
-            >
-              비밀번호
-            </label>
-            <div className="relative">
-              <input
-                className="h-[48px] px-4 w-full rounded-lg border md:text-[16px] text-[14px] placeholder-gray-2 focus:outline-none focus:border-gray-3 transition border-gray-2"
-                type="text"
-                placeholder="비밀번호를 입력해주세요"
-                id=":R3afnnj7pubb:"
-                name="password"
-                onChange={onChangeInput}
-                // value={password}
-              />
-            </div>
+            <InputField
+              label="비밀번호"
+              type={passwordHide ? "password" : "text"}
+              value={password}
+              name="password"
+              placeholder="비밀번호를 입력해주세요"
+              onChange={onChangeInput}
+              error={error.passwordError}
+              setPasswordHide={setPasswordHide}
+            />
           </div>
           <button
             type="submit"
