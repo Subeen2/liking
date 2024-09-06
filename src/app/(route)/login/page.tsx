@@ -5,10 +5,15 @@ import { emailRegEx } from "@/utils/regex";
 import { useRouter } from "next/router";
 import { useInput } from "@/hooks/useInput";
 import InputField from "@/components/inputField/field/InputField";
+import axios from "axios";
+import { login } from "@/app/lib/features/userAuth/userAuthSlice";
+import { useDispatch } from "react-redux";
 
 export default function LogIn() {
   // 클라이언트에서만 사용
   //   const router = useRouter();
+  const dispatch = useDispatch();
+
   const [error, setError] = useState({
     emailError: "",
     passwordError: "",
@@ -19,7 +24,7 @@ export default function LogIn() {
     password: "",
   });
 
-  // 비밀번호 show / hide
+  // 비밀번호 show & hide
   const [passwordHide, setPasswordHide] = useState(true);
 
   const { email, password } = input;
@@ -39,7 +44,19 @@ export default function LogIn() {
     }
 
     // mock API 호출
+    try {
+      await axios
+        .post(`http://localhost:3000/api/v1/users/login`, loginData)
+        .then((res) => {
+          console.log(res);
+          // 응답 보고 처리하기
+        });
+    } catch (err) {
+      return { error: err };
+    }
+
     // redux에 저장
+    dispatch(login(loginData));
 
     // router.push("/");
   };
