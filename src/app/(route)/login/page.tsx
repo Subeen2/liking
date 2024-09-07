@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { emailRegEx } from "@/utils/regex";
-import { useRouter } from "next/router";
+import { usePathname, useRouter } from "next/navigation";
 import { useInput } from "@/hooks/useInput";
 import InputField from "@/components/inputField/field/InputField";
 import axios from "axios";
@@ -11,8 +11,10 @@ import { useDispatch } from "react-redux";
 
 export default function LogIn() {
   // 클라이언트에서만 사용
-  //   const router = useRouter();
   const dispatch = useDispatch();
+
+  // use client + next + router 사용 시 navigation 임포트 해야 함.
+  const router = useRouter();
 
   const [error, setError] = useState({
     emailError: "",
@@ -48,17 +50,20 @@ export default function LogIn() {
       await axios
         .post(`http://localhost:3000/api/v1/users/login`, loginData)
         .then((res) => {
-          console.log(res);
+          console.log(loginData);
+          console.log(res.data.result);
           // 응답 보고 처리하기
+
+          // redux에 저장
+          // dispatch(login(res));
+
+          if (res.data.result !== null) {
+            router.push("/");
+          }
         });
     } catch (err) {
       return { error: err };
     }
-
-    // redux에 저장
-    dispatch(login(loginData));
-
-    // router.push("/");
   };
 
   return (

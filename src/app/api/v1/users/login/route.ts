@@ -1,17 +1,17 @@
 export async function POST(request: Request) {
-  const { user_email, password } = await request.json();
+  const { email, password } = await request.json();
 
   // 실제 데이터베이스 로직 대신 mock 데이터를 사용합니다.
   const mockUsers = [
     {
-      user_email: "existing@example.com",
+      email: "existing@example.com",
       password: "password123",
       user_uid: "adadsdasdasd33",
     },
   ];
 
   const user = mockUsers.find(
-    (u) => u.user_email === user_email && u.password === password
+    (u) => u.email === email && u.password === password
   );
 
   if (!user) {
