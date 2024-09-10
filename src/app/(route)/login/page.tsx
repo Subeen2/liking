@@ -58,6 +58,10 @@ export default function LogIn() {
             dispatch(login({ uid: res.data.result, email: loginData.email }));
 
             // 새로고침 시 데이터 날아감 방지
+            // localStorage.setItem(
+            //   "reduxState",
+            //   JSON.stringify({ uid: res.data.result, email: loginData.email })
+            // );
 
             // 메인페이지로 리디렉션
             router.push("/");

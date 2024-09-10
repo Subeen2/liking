@@ -20,10 +20,12 @@ const userAuthSlices = createSlice({
     login: (state, action: PayloadAction<{ uid: string; email: string }>) => {
       state.isAuthenticated = true;
       state.user = action.payload;
+      localStorage.setItem("reduxState", JSON.stringify(state));
     },
     logout: (state) => {
       state.isAuthenticated = false;
       state.user = null;
+      localStorage.deleteItem("reduxState");
     },
   },
 });
