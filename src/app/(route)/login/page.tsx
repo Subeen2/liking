@@ -52,12 +52,10 @@ export default function LogIn() {
         .then((res) => {
           console.log(loginData);
           console.log(res.data.result);
-          // 응답 보고 처리하기
-
-          // redux에 저장
-          // dispatch(login(res));
 
           if (res.data.result !== null) {
+            // redux에 저장
+            dispatch(login({ uid: res.data.result, email: loginData.email }));
             router.push("/");
           }
         });

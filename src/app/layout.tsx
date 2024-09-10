@@ -26,8 +26,10 @@ const RootLayout = ({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Header />
-        <ClientLayout>{children}</ClientLayout>
+        <ClientLayout>
+          <Header />
+          {children}
+        </ClientLayout>
         <Footer />
       </body>
     </html>

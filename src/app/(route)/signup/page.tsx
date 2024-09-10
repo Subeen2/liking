@@ -1,3 +1,5 @@
+"use client";
+
 import InputField from "@/components/inputField/field/InputField";
 import { useInput } from "@/hooks/useInput";
 import { useRouter } from "next/navigation";

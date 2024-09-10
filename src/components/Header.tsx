@@ -1,17 +1,43 @@
+"use client";
+
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "@/app/lib/features/userAuth/userAuthSlice";
+import { useRouter } from "next/navigation";
+import { RootState } from "@/app/lib/store";
 
 export default function Header() {
+  const user = useSelector((state: RootState) => state.userAuth);
+  const dispatch = useDispatch();
+  const router = useRouter();
+
+  const handleLogout = () => {
+    dispatch(logout());
+    router.push("/login");
+  };
+
   return (
     <header className="bg-second100 mb-[100px]">
       <div className="hidden md:block">
-        <ul className="container mx-auto w-full max-w-[1024px] flex items-center justify-end gap-5 py-[18px] text-[13px] text-gray-4 text-black px-[16px] lg:px-0">
-          <li>
-            <a href="/login">로그인</a>
-          </li>
-          <li>
-            <a href="/signup">회원가입</a>
-          </li>
-        </ul>
+        {user.isAuthenticated ? (
+          <ul className="container mx-auto w-full max-w-[1024px] flex items-center justify-end gap-5 py-[18px] text-[13px] text-gray-4 text-black px-[16px] lg:px-0">
+            <li>
+              <a href="/mypage">마이페이지</a>
+            </li>
+            <li>
+              <button onClick={handleLogout}>로그아웃</button>
+            </li>
+          </ul>
+        ) : (
+          <ul className="container mx-auto w-full max-w-[1024px] flex items-center justify-end gap-5 py-[18px] text-[13px] text-gray-4 text-black px-[16px] lg:px-0">
+            <li>
+              <a href="/login">로그인</a>
+            </li>
+            <li>
+              <a href="/signup">회원가입</a>
+            </li>
+          </ul>
+        )}
       </div>
       <div className="container mx-auto w-full max-w-[1024px] flex justify-between items-center py-[18px] px-[16px] lg:px-0">
         <h1 className="text-[30px] font-extrabold">
