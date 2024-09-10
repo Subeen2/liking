@@ -1,6 +1,16 @@
 import Image from "next/image";
 
 export default function Home() {
+  // 스토리지 저장 후 어플리케이션 초기 로드 시 redux에 유저 데이터 셋팅
+
+  // const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   const storedUser = localStorage.getItem('user');
+  //   if (storedUser) {
+  //     dispatch(login(JSON.parse(storedUser)));
+  //   }
+  // }, [dispatch]);
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">

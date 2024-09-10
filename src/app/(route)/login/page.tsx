@@ -56,6 +56,10 @@ export default function LogIn() {
           if (res.data.result !== null) {
             // redux에 저장
             dispatch(login({ uid: res.data.result, email: loginData.email }));
+
+            // 새로고침 시 데이터 날아감 방지
+
+            // 메인페이지로 리디렉션
             router.push("/");
           }
         });
