@@ -11,10 +11,14 @@ export default function Header() {
   const dispatch = useDispatch();
   const router = useRouter();
 
+  const userUID = user.user?.uid?.user_uid;
+
   const handleLogout = () => {
     dispatch(logout());
     router.push("/login");
   };
+
+  console.log(userUID, typeof userUID);
 
   return (
     <header className="bg-second100 mb-[100px]">
@@ -22,7 +26,7 @@ export default function Header() {
         {user.isAuthenticated ? (
           <ul className="container mx-auto w-full max-w-[1024px] flex items-center justify-end gap-5 py-[18px] text-[13px] text-gray-4 text-black px-[16px] lg:px-0">
             <li>
-              <a href="/mypage">마이페이지</a>
+              <a href={`/profile/${userUID}`}>내 프로필</a>
             </li>
             <li>
               <button onClick={handleLogout}>로그아웃</button>

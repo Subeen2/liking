@@ -17,7 +17,6 @@ const loadState = () => {
 
 const saveState = (state: RootState) => {
   const serializedState = JSON.stringify(state.userAuth); // userAuth만 저장
-  console.log("Saving state:", serializedState);
   localStorage.setItem("reduxState", serializedState);
 };
 
@@ -42,7 +41,6 @@ const store = makeStore();
 // Subscribe to store updates and save state to localStorage
 store.subscribe(() => {
   const state = store.getState();
-  console.log("State changed:", state); // 디버깅을 위한 로그
   saveState(state);
 });
 
