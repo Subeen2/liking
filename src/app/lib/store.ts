@@ -2,26 +2,23 @@ import { configureStore } from "@reduxjs/toolkit";
 import rootReducer from "./rootReducer";
 
 const loadState = () => {
-  try {
-    const serializedState = localStorage.getItem("reduxState");
-    if (serializedState === null) {
-      return undefined;
-    }
-    return JSON.parse(serializedState);
-  } catch (e) {
-    console.log("Could not load state", e);
+  const serializedState = localStorage.getItem("reduxState");
+  if (serializedState === null) {
     return undefined;
   }
+
+  const parsedState = JSON.parse(serializedState);
+
+  // 로컬 스토리지의 상태를 rootReducer의 구조에 맞게 변환
+  return {
+    userAuth: parsedState, // userAuth로 감싸기
+  };
 };
 
 const saveState = (state: RootState) => {
-  try {
-    const serializedState = JSON.stringify(state);
-    console.log("Saving state:", serializedState);
-    localStorage.setItem("reduxState", serializedState);
-  } catch (e) {
-    console.error("Could not save state", e);
-  }
+  const serializedState = JSON.stringify(state.userAuth); // userAuth만 저장
+  console.log("Saving state:", serializedState);
+  localStorage.setItem("reduxState", serializedState);
 };
 
 const preloadedState = loadState();
