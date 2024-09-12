@@ -21,19 +21,10 @@ export default function Home() {
         <div className="max-w-sm mx-auto p-6 flex items-center bg-white rounded-xl shadow-md space-x-4">
           <a
             className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
+            href="/interests"
             rel="noopener noreferrer"
           >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
+            나의 관심사 등록하기
           </a>
         </div>
       </div>
