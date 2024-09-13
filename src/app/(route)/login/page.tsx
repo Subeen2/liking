@@ -55,7 +55,13 @@ export default function LogIn() {
 
           if (res.data.result !== null) {
             // redux에 저장
-            dispatch(login({ uid: res.data.result, email: loginData.email }));
+            dispatch(
+              login({
+                uid: res.data.result,
+                email: loginData.email,
+                nickname: res.data.result,
+              })
+            );
 
             // 새로고침 시 데이터 날아감 방지
             // localStorage.setItem(

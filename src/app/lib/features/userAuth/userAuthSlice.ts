@@ -7,6 +7,7 @@ interface UserState {
       user_uid: string;
     };
     email: string;
+    nickname: string;
   } | null;
 }
 
@@ -21,7 +22,11 @@ const userAuthSlices = createSlice({
   reducers: {
     login: (
       state,
-      action: PayloadAction<{ uid: { user_uid: string }; email: string }>
+      action: PayloadAction<{
+        uid: { user_uid: string };
+        email: string;
+        nickname: string;
+      }>
     ) => {
       state.isAuthenticated = true;
       state.user = action.payload;

@@ -4,6 +4,7 @@ export async function POST(request: Request) {
   // 실제 데이터베이스 로직 대신 mock 데이터를 사용합니다.
   const mockUsers = [
     {
+      nickname: "콩콩",
       email: "existing@example.com",
       password: "password123",
       user_uid: "adadsdasdasd33",
@@ -35,6 +36,7 @@ export async function POST(request: Request) {
       message: "로그인 성공",
       result: {
         user_uid: user.user_uid,
+        nickname: user.nickname,
         // 필요한 다른 데이터도 이곳에 추가할 수 있습니다.
       },
     }),

@@ -13,6 +13,8 @@ export default function UserProfilePage({
 
   // Redux에서 user 정보를 가져옵니다.
   const user = useSelector((state: RootState) => state.userAuth);
+
+  // TODO :: 가독성 떨어지므로 데이터 형식 수정 필요
   const userUID = user.user?.uid?.user_uid;
 
   // 사용자 ID와 Redux에 저장된 ID가 일치하는지 확인
