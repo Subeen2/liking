@@ -3,9 +3,8 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 interface UserState {
   isAuthenticated: boolean;
   user: {
-    uid: {
-      user_uid: string;
-    };
+    user_uid: string;
+
     email: string;
     nickname: string;
   } | null;
@@ -23,7 +22,7 @@ const userAuthSlices = createSlice({
     login: (
       state,
       action: PayloadAction<{
-        uid: { user_uid: string };
+        user_uid: string;
         email: string;
         nickname: string;
       }>

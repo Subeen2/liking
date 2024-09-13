@@ -15,7 +15,7 @@ export default function UserProfilePage({
   const user = useSelector((state: RootState) => state.userAuth);
 
   // TODO :: 가독성 떨어지므로 데이터 형식 수정 필요
-  const userUID = user.user?.uid?.user_uid;
+  const userUID = user.user?.user_uid;
 
   // 사용자 ID와 Redux에 저장된 ID가 일치하는지 확인
   useEffect(() => {
@@ -32,8 +32,8 @@ export default function UserProfilePage({
   return (
     <div>
       <h1>기본정보</h1>
-      <p>닉네임: {user.nickname}</p>
-      <p>이메일: {user.email}</p>
+      <p>닉네임: {user.user?.nickname}</p>
+      <p>이메일: {user.user?.email}</p>
 
       <a href={`/profile/${id}/edit`}>Edit Profile</a>
     </div>

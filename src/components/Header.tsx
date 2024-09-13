@@ -12,7 +12,7 @@ export default function Header() {
   const router = useRouter();
 
   const [isMounted, setIsMounted] = useState(false);
-  const userUID = user.user?.uid?.user_uid;
+  const userUID = user.user?.user_uid;
 
   useEffect(() => {
     setIsMounted(true); // 컴포넌트가 마운트된 이후에만 렌더링되도록 설정

@@ -57,9 +57,9 @@ export default function LogIn() {
             // redux에 저장
             dispatch(
               login({
-                uid: res.data.result,
+                user_uid: res.data.result.user_uid,
                 email: loginData.email,
-                nickname: res.data.result,
+                nickname: res.data.result.nickname,
               })
             );
 
