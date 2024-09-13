@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "@/app/lib/features/userAuth/userAuthSlice";
 import { useRouter } from "next/navigation";
@@ -11,17 +11,27 @@ export default function Header() {
   const dispatch = useDispatch();
   const router = useRouter();
 
+  const [isMounted, setIsMounted] = useState(false);
   const userUID = user.user?.uid?.user_uid;
+
+  useEffect(() => {
+    setIsMounted(true); // 컴포넌트가 마운트된 이후에만 렌더링되도록 설정
+  }, []);
 
   const handleLogout = () => {
     dispatch(logout());
     router.push("/login");
   };
 
+  if (!isMounted) {
+    // 서버와 클라이언트가 일치할 때까지 아무것도 렌더링하지 않음
+    return null;
+  }
+
   return (
     <header className="bg-second100 mb-[100px]">
       <div className="hidden md:block">
-        {user.isAuthenticated ? (
+        {user.isAuthenticated === true ? (
           <ul className="container mx-auto w-full max-w-[1024px] flex items-center justify-end gap-5 py-[18px] text-[13px] text-gray-4 text-black px-[16px] lg:px-0">
             <li>
               <a href={`/profile/${userUID}`} className="group">
