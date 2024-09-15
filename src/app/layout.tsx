@@ -1,5 +1,5 @@
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
+import Footer from "@/components/footer/Footer";
+import Header from "@/components/header/Header";
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import ClientLayout from "./ClientLayout";
