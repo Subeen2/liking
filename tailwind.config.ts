@@ -23,6 +23,30 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      keyframes: {
+        wiggle: {
+          "0%, 100%": { transform: "rotate(-3deg)" },
+          "50%": { transform: "rotate(3deg)" },
+        },
+        bubble: {
+          "0%": {
+            transform: "scale(0.5)", // 시작 크기
+            opacity: "0.5", // 살짝 투명
+          },
+          "50%": {
+            transform: "scale(1)", // 중간 크기
+            opacity: "1", // 완전히 보임
+          },
+          "100%": {
+            transform: "scale(1.5)", // 최종 크기
+            opacity: "0", // 투명하게 사라짐
+          },
+        },
+      },
+      animation: {
+        wiggle: "wiggle 1s ease-in-out infinite",
+        bubble: 'bubble 3s ease-in-out infinite', 
+      },
     },
   },
   plugins: [],

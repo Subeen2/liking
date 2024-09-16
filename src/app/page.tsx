@@ -18,7 +18,7 @@ export default function Home() {
           Get started by editing&nbsp;
           <code className="font-mono font-bold">src/app/page.tsx</code>
         </p> */}
-        <div className="max-w-sm mx-auto p-6 flex items-center bg-white rounded-xl shadow-md space-x-4">
+        <div className="animate-wiggle max-w-sm mx-auto p-6 flex items-center bg-white rounded-xl shadow-md space-x-4">
           <a
             className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
             href="/interests"
@@ -27,6 +27,7 @@ export default function Home() {
             나의 관심사 등록하기
           </a>
         </div>
+        <div className="w-16 h-16 bg-main300 rounded-full animate-bubble"></div>
       </div>
     </main>
     // <ReduxProvider>
