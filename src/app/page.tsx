@@ -1,23 +1,117 @@
-import Image from "next/image";
+"use client";
+
+import { useEffect, useRef } from "react";
+import * as THREE from "three";
 
 export default function Home() {
-  // 스토리지 저장 후 어플리케이션 초기 로드 시 redux에 유저 데이터 셋팅
+  const mountRef = useRef<HTMLDivElement | null>(null);
 
-  // const dispatch = useDispatch();
+  useEffect(() => {
+    const mount = mountRef.current;
+    if (!mount) return;
 
-  // useEffect(() => {
-  //   const storedUser = localStorage.getItem('user');
-  //   if (storedUser) {
-  //     dispatch(login(JSON.parse(storedUser)));
-  //   }
-  // }, [dispatch]);
+    // Scene, Camera, Renderer 생성
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(
+      75,
+      window.innerWidth / window.innerHeight,
+      0.1,
+      1000
+    );
+
+    const renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setClearColor(0xffffff); // 배경색을 흰색으로 설정
+    mount.appendChild(renderer.domElement); // mountRef에 렌더러 추가
+
+    // 조명 추가
+    const light = new THREE.DirectionalLight(0xffffff, 1);
+    light.position.set(1, 1, 1).normalize();
+    scene.add(light);
+
+    // 하트 모양 생성
+    const heartShape = new THREE.Shape();
+    heartShape.moveTo(0, 0);
+    heartShape.bezierCurveTo(0, -0.5, -0.5, -0.5, -0.5, 0);
+    heartShape.bezierCurveTo(-0.5, 0.5, 0, 0.5, 0, 1);
+    heartShape.bezierCurveTo(0, 0.5, 0.5, 0.5, 0.5, 0);
+    heartShape.bezierCurveTo(0.5, -0.5, 0, -0.5, 0, 0);
+
+    const geometry = new THREE.ShapeGeometry(heartShape);
+    const material = new THREE.MeshBasicMaterial({ color: 0xff69b4 }); // 핑크색
+    const heart = new THREE.Mesh(geometry, material);
+
+    scene.add(heart);
+
+    // // 비눗방울 생성 함수
+    // function createBubble() {
+    //   const geometry = new THREE.SphereGeometry(1, 32, 32);
+    //   const material = new THREE.MeshPhongMaterial({
+    //     color: 0x87cefa, // 예쁜 파란색 (Sky Blue)
+    //     transparent: true,
+    //     opacity: 0.6,
+    //     shininess: 100,
+    //   });
+
+    //   const bubble = new THREE.Mesh(geometry, material);
+    //   bubble.position.set(
+    //     (Math.random() - 0.5) * 10,
+    //     (Math.random() - 0.5) * 10,
+    //     (Math.random() - 0.5) * 10
+    //   );
+    //   bubble.scale.set(0.1, 0.1, 0.1);
+
+    //   scene.add(bubble);
+    //   return bubble;
+    // }
+
+    // // 비눗방울 20개 생성
+    // const bubbles: THREE.Mesh<THREE.SphereGeometry, THREE.MeshPhongMaterial>[] =
+    //   [];
+    // for (let i = 0; i < 20; i++) {
+    //   bubbles.push(createBubble());
+    // }
+
+    // 카메라 위치
+    // camera.position.z = 15;
+    camera.position.z = 5;
+
+    // 애니메이션
+    function animate() {
+      requestAnimationFrame(animate);
+
+      // 각 비눗방울을 조금씩 크게 하고, 위치를 약간 이동
+      // bubbles.forEach((bubble) => {
+      //   bubble.scale.x += 0.01;
+      //   bubble.scale.y += 0.01;
+      //   bubble.scale.z += 0.01;
+
+      //   bubble.position.y += 0.02; // 위로 살짝 이동
+      // });
+
+      // 하트를 가로축으로 360도 회전
+      heart.rotation.x += 0.01;
+      heart.rotation.y += 0.01;
+
+      renderer.render(scene, camera);
+    }
+
+    animate();
+
+    // Clean up on unmount
+    return () => {
+      if (mount) {
+        mount.removeChild(renderer.domElement); // mount에서 renderer 제거
+      }
+    };
+  }, []);
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        {/* <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p> */}
+      <div
+        ref={mountRef}
+        className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex"
+      >
         <div className="animate-wiggle max-w-sm mx-auto p-6 flex items-center bg-white rounded-xl shadow-md space-x-4">
           <a
             className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
@@ -30,11 +124,5 @@ export default function Home() {
         <div className="w-16 h-16 bg-main300 rounded-full animate-bubble"></div>
       </div>
     </main>
-    // <ReduxProvider>
-    //   <main className="w-full h-screen grid grid-cols-2 place-items-center">
-    //     <AuthUpdater />
-    //     <AuthViewer />
-    //   </main>
-    // </ReduxProvider>
   );
 }
