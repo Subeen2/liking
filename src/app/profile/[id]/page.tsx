@@ -45,21 +45,25 @@ export default function UserProfilePage({
     <div className="grid grid-cols-1 grid-rows-2 gap-4 p-20">
       <div className="flex h-screen">
         <div className="flex rounded-xl shadow-md w-full h-48 p-10">
-          <div>
-            <div className="max-w-sm mx-auto p-6 bg-white rounded-full border-[0.5px] space-x-4 h-28 w-28">
-              <Image
-                src="/icons/face-smile-regular.svg"
-                alt="유저 이미지"
-                width={30}
-                height={30}
-              />
-            </div>
-            <h1>{user.user?.nickname}</h1>
+          <div className="max-w-sm mx-10 p-6 bg-white rounded-full border-[0.5px] space-x-4 h-28 w-28">
+            <Image
+              src="/icons/face-smile-regular.svg"
+              alt="유저 이미지"
+              width={30}
+              height={30}
+            />
           </div>
-          <p>닉네임: {user.user?.nickname}</p>
-          <p>이메일: {user.user?.email}</p>
+          <div className="flex-row">
+            <h1>{user.user?.nickname}</h1>
+            <p>이메일: {user.user?.email}</p>
 
-          <a href={`/profile/${id}/edit`}>Edit Profile</a>
+            <a href={`/profile/${id}/edit`}>Edit Profile</a>
+            <div>
+              <p>팔로워</p>
+              <p>팔로잉</p>
+              <p>즐겨찾기</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
