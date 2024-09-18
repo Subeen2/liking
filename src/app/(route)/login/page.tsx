@@ -10,6 +10,7 @@ import { login } from "@/app/lib/features/userAuth/userAuthSlice";
 import { useDispatch } from "react-redux";
 
 export default function LogIn() {
+  const httpURL = "http://localhost:3000/api/v1/users";
   // 클라이언트에서만 사용
   const dispatch = useDispatch();
 
@@ -47,35 +48,37 @@ export default function LogIn() {
 
     // mock API 호출
     try {
-      await axios
-        .post(`http://localhost:3000/api/v1/users/login`, loginData)
-        .then((res) => {
-          console.log(loginData);
-          console.log(res.data.result);
+      await axios.post(`${httpURL}/login`, loginData).then((res) => {
+        console.log(loginData);
+        console.log(res.data.result);
 
-          if (res.data.result !== null) {
-            // redux에 저장
-            dispatch(
-              login({
-                user_uid: res.data.result.user_uid,
-                email: loginData.email,
-                nickname: res.data.result.nickname,
-              })
-            );
+        if (res.data.result !== null) {
+          // redux에 저장
+          dispatch(
+            login({
+              user_uid: res.data.result.user_uid,
+              email: loginData.email,
+              nickname: res.data.result.nickname,
+            })
+          );
 
-            // 새로고침 시 데이터 날아감 방지
-            // localStorage.setItem(
-            //   "reduxState",
-            //   JSON.stringify({ uid: res.data.result, email: loginData.email })
-            // );
+          // 새로고침 시 데이터 날아감 방지
+          // localStorage.setItem(
+          //   "reduxState",
+          //   JSON.stringify({ uid: res.data.result, email: loginData.email })
+          // );
 
-            // 메인페이지로 리디렉션
-            router.push("/");
-          }
-        });
+          // 메인페이지로 리디렉션
+          router.push("/");
+        }
+      });
     } catch (err) {
       return { error: err };
     }
+  };
+
+  const handleSignupRedirect = async () => {
+    router.push("/signup");
   };
 
   return (
@@ -115,11 +118,13 @@ export default function LogIn() {
           >
             로그인
           </button>
-          <a className="w-full" href="/signup">
-            <button className="flex items-center justify-center text-lg border border-gray-2 py-2 rounded-3xl font-medium w-full sm:py-2 sm:text-base md:text-md">
-              회원가입
-            </button>
-          </a>
+          <button
+            type="button"
+            className="flex items-center justify-center text-lg border border-gray-2 py-2 rounded-3xl font-medium w-full sm:py-2 sm:text-base md:text-md"
+            onClick={handleSignupRedirect}
+          >
+            회원가입
+          </button>
         </form>
       </div>
     </div>
