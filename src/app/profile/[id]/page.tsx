@@ -42,7 +42,7 @@ export default function UserProfilePage({
   }
 
   return (
-    <div className="grid grid-cols-1 grid-rows-2 gap-4 p-20">
+    <div className="grid grid-cols-1 grid-rows-2 gap-5 p-20">
       <div className="flex h-screen">
         <div className="flex rounded-xl shadow-md w-full h-48 p-10">
           <div className="max-w-sm mx-10 p-6 bg-white rounded-full border-[0.5px] space-x-4 h-28 w-28">
@@ -53,12 +53,14 @@ export default function UserProfilePage({
               height={30}
             />
           </div>
-          <div className="flex-row">
-            <h1>{user.user?.nickname}</h1>
+          <div className="flex-row gap-2">
+            <h2>
+              <strong>{user.user?.nickname}</strong>
+            </h2>
             <p>이메일: {user.user?.email}</p>
 
             <a href={`/profile/${id}/edit`}>Edit Profile</a>
-            <div>
+            <div className="flex gap-5">
               <p>팔로워</p>
               <p>팔로잉</p>
               <p>즐겨찾기</p>
