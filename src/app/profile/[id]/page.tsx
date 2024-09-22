@@ -43,7 +43,7 @@ export default function UserProfilePage({
 
   return (
     <div className="grid grid-cols-1 grid-rows-2 gap-5 px-44 py-10">
-      <div className="flex h-screen">
+      <div>
         <div className="flex rounded-xl shadow-md w-full h-48 p-10">
           <div className="max-w-sm mx-10 p-6 bg-white rounded-full border-[0.5px] space-x-4 h-28 w-28">
             <Image
@@ -67,6 +67,7 @@ export default function UserProfilePage({
             </div>
           </div>
         </div>
+        <h1>목록</h1>
       </div>
     </div>
   );
