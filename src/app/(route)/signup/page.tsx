@@ -76,7 +76,7 @@ export default function SignUp() {
 
     try {
       const response = await axios.post(`${httpURL}/signup`, formData);
-      if (response.status === 201) {
+      if (response.status === 200) {
         setSuccess("회원가입 성공! 로그인 페이지로 이동합니다.");
         setTimeout(() => router.push("/login"), 2000); // 2초 후 로그인 페이지로 리디렉션
       }
@@ -93,7 +93,7 @@ export default function SignUp() {
       <h1 className="text-3xl font-bold  mb-[70px]">회원가입</h1>
       <div className="flex flex-row w-full justify-center text-left">
         <form
-          onSubmit={handleSubmit}
+          // onSubmit={handleSubmit}
           className="flex flex-col justify-center gap-6 w-full mb-6 max-w-lg"
         >
           <div className="flex flex-col">
