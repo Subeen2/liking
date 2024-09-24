@@ -28,30 +28,29 @@ export default function SignUp() {
 
   const { nickname, email, password } = input;
 
-  const handleSignupSubmit = async () => {
-    try {
-      await axios
-        .post(`${httpURL}/signup`, { nickname, email, password })
-        .then((res) => {
-          console.log(res.data.result);
+  // const handleSignupSubmit = async () => {
+  //   try {
+  //     await axios
+  //       .post(`${httpURL}/signup`, { nickname, email, password })
+  //       .then((res) => {
 
-          if (res.data.result !== null) {
-            // redux에 저장
+  //         if (res.data.result !== null) {
+  //           // redux에 저장
 
-            // 새로고침 시 데이터 날아감 방지
-            // localStorage.setItem(
-            //   "reduxState",
-            //   JSON.stringify({ uid: res.data.result, email: loginData.email })
-            // );
+  //           // 새로고침 시 데이터 날아감 방지
+  //           // localStorage.setItem(
+  //           //   "reduxState",
+  //           //   JSON.stringify({ uid: res.data.result, email: loginData.email })
+  //           // );
 
-            // 메인페이지로 리디렉션
-            router.push("/");
-          }
-        });
-    } catch (err) {
-      return { error: err };
-    }
-  };
+  //           // 메인페이지로 리디렉션
+  //           router.push("/login");
+  //         }
+  //       });
+  //   } catch (err) {
+  //     return { error: err };
+  //   }
+  // };
 
   const [formData, setFormData] = useState({
     email: "",
@@ -69,13 +68,13 @@ export default function SignUp() {
     });
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSignupSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError({ ...error, passwordError: "" });
     setSuccess("");
 
     try {
-      const response = await axios.post(`${httpURL}/signup`, formData);
+      const response = await axios.post(`${httpURL}/signup`, input);
       if (response.status === 200) {
         setSuccess("회원가입 성공! 로그인 페이지로 이동합니다.");
         setTimeout(() => router.push("/login"), 2000); // 2초 후 로그인 페이지로 리디렉션
@@ -93,7 +92,7 @@ export default function SignUp() {
       <h1 className="text-3xl font-bold  mb-[70px]">회원가입</h1>
       <div className="flex flex-row w-full justify-center text-left">
         <form
-          // onSubmit={handleSubmit}
+          onSubmit={handleSignupSubmit}
           className="flex flex-col justify-center gap-6 w-full mb-6 max-w-lg"
         >
           <div className="flex flex-col">
@@ -133,7 +132,6 @@ export default function SignUp() {
           <button
             type="submit"
             className="w-full mt-1 py-3 text-lg bg-main400 text-white rounded-lg"
-            onClick={handleSignupSubmit}
           >
             가입하기
           </button>
