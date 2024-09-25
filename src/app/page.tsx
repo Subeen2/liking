@@ -1,11 +1,26 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "@/app/lib/features/userAuth/userAuthSlice";
+import { useRouter } from "next/navigation";
+import { RootState } from "@/app/lib/store";
 import * as THREE from "three";
 
 export default function Home() {
   const mountRef = useRef<HTMLDivElement | null>(null);
 
+  const user = useSelector((state: RootState) => state.userAuth);
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const userUID = user.user?.user_uid;
+
+  console.log(userUID);
+
+  const handleLogout = () => {
+    dispatch(logout());
+    router.push("/login");
+  };
   useEffect(() => {
     const mount = mountRef.current;
     if (!mount) return;
@@ -112,15 +127,17 @@ export default function Home() {
         ref={mountRef}
         className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex"
       >
-        <div className="animate-wiggle max-w-sm mx-auto p-6 flex items-center bg-white rounded-xl shadow-md space-x-4">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="/interests"
-            rel="noopener noreferrer"
-          >
-            나의 관심사 등록하기
-          </a>
-        </div>
+        {user.isAuthenticated === true ? (
+          <div className="animate-wiggle max-w-sm mx-auto p-6 flex items-center bg-white rounded-xl shadow-md space-x-4">
+            <a
+              className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
+              href={`/interests/${userUID}`}
+              rel="noopener noreferrer"
+            >
+              나의 관심사 등록하기
+            </a>
+          </div>
+        ) : null}
         <div className="w-16 h-16 bg-main300 rounded-full animate-bubble"></div>
       </div>
     </main>
