@@ -21,7 +21,12 @@ export default function Home() {
     dispatch(logout());
     router.push("/login");
   };
+
+  const [isClient, setIsClient] = useState(false);
+
   useEffect(() => {
+    setIsClient(true); // 클라이언트에서만 실행되도록 처리
+
     const mount = mountRef.current;
     if (!mount) return;
 
@@ -127,7 +132,7 @@ export default function Home() {
         ref={mountRef}
         className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex"
       >
-        {user.isAuthenticated === true ? (
+        {isClient && user.isAuthenticated === true ? (
           <div className="animate-wiggle max-w-sm mx-auto p-6 flex items-center bg-white rounded-xl shadow-md space-x-4">
             <a
               className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
