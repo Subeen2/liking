@@ -44,9 +44,12 @@ export default function UserInterestsPage({
   return (
     <div className="grid grid-cols-1 grid-rows-2 gap-5 px-44 py-10">
       <div>
-        <div className="flex rounded-xl shadow-md w-full h-48 p-10">
-          추가 버튼
-        </div>
+        <button
+          type="button"
+          className="flex items-center justify-center text-lg border border-gray-2 py-2 rounded-3xl font-medium w-full sm:py-2 sm:text-base md:text-md"
+        >
+          추가
+        </button>
       </div>
     </div>
   );
