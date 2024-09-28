@@ -15,8 +15,6 @@ export default function Home() {
   const router = useRouter();
   const userUID = user.user?.user_uid;
 
-  console.log(userUID);
-
   const handleLogout = () => {
     dispatch(logout());
     router.push("/login");
