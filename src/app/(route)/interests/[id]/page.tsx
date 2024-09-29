@@ -23,10 +23,6 @@ export default function UserInterestsPage({
   // TODO :: 가독성 떨어지므로 데이터 형식 수정 필요
   const userUID = user.user?.user_uid;
 
-  useEffect(() => {
-    setIsMounted(true); // 컴포넌트가 마운트된 이후에만 렌더링되도록 설정
-  }, []);
-
   // 사용자 ID와 Redux에 저장된 ID가 일치하는지 확인
   useEffect(() => {
     if (!user || userUID !== id) {
@@ -44,11 +40,7 @@ export default function UserInterestsPage({
     return <p>Loading...</p>; // 데이터를 불러올 때까지 로딩 표시
   }
 
-  const [isClient, setIsClient] = useState(false);
-
   useEffect(() => {
-    setIsClient(true); // 클라이언트에서만 실행되도록 처리
-
     const mount = mountRef.current;
     if (!mount) return;
 
@@ -71,69 +63,50 @@ export default function UserInterestsPage({
     light.position.set(1, 1, 1).normalize();
     scene.add(light);
 
-    // 하트 모양 생성
-    const heartShape = new THREE.Shape();
-    heartShape.moveTo(0, 0);
-    heartShape.bezierCurveTo(0, -0.5, -0.5, -0.5, -0.5, 0);
-    heartShape.bezierCurveTo(-0.5, 0.5, 0, 0.5, 0, 1);
-    heartShape.bezierCurveTo(0, 0.5, 0.5, 0.5, 0.5, 0);
-    heartShape.bezierCurveTo(0.5, -0.5, 0, -0.5, 0, 0);
+    // 비눗방울 생성 함수
+    function createBubble() {
+      const geometry = new THREE.SphereGeometry(1, 32, 32);
+      const material = new THREE.MeshPhongMaterial({
+        color: 0x87cefa, // 예쁜 파란색 (Sky Blue)
+        transparent: true,
+        opacity: 0.6,
+        shininess: 100,
+      });
 
-    const geometry = new THREE.ShapeGeometry(heartShape);
-    const material = new THREE.MeshBasicMaterial({ color: 0xff69b4 }); // 핑크색
-    const heart = new THREE.Mesh(geometry, material);
+      const bubble = new THREE.Mesh(geometry, material);
+      bubble.position.set(
+        (Math.random() - 0.5) * 10,
+        (Math.random() - 0.5) * 10,
+        (Math.random() - 0.5) * 10
+      );
+      bubble.scale.set(0.1, 0.1, 0.1);
 
-    scene.add(heart);
+      scene.add(bubble);
+      return bubble;
+    }
 
-    // // 비눗방울 생성 함수
-    // function createBubble() {
-    //   const geometry = new THREE.SphereGeometry(1, 32, 32);
-    //   const material = new THREE.MeshPhongMaterial({
-    //     color: 0x87cefa, // 예쁜 파란색 (Sky Blue)
-    //     transparent: true,
-    //     opacity: 0.6,
-    //     shininess: 100,
-    //   });
-
-    //   const bubble = new THREE.Mesh(geometry, material);
-    //   bubble.position.set(
-    //     (Math.random() - 0.5) * 10,
-    //     (Math.random() - 0.5) * 10,
-    //     (Math.random() - 0.5) * 10
-    //   );
-    //   bubble.scale.set(0.1, 0.1, 0.1);
-
-    //   scene.add(bubble);
-    //   return bubble;
-    // }
-
-    // // 비눗방울 20개 생성
-    // const bubbles: THREE.Mesh<THREE.SphereGeometry, THREE.MeshPhongMaterial>[] =
-    //   [];
-    // for (let i = 0; i < 20; i++) {
-    //   bubbles.push(createBubble());
-    // }
+    // 비눗방울 20개 생성
+    const bubbles: THREE.Mesh<THREE.SphereGeometry, THREE.MeshPhongMaterial>[] =
+      [];
+    for (let i = 0; i < 20; i++) {
+      bubbles.push(createBubble());
+    }
 
     // 카메라 위치
-    // camera.position.z = 15;
-    camera.position.z = 5;
+    camera.position.z = 15;
 
     // 애니메이션
     function animate() {
       requestAnimationFrame(animate);
 
       // 각 비눗방울을 조금씩 크게 하고, 위치를 약간 이동
-      // bubbles.forEach((bubble) => {
-      //   bubble.scale.x += 0.01;
-      //   bubble.scale.y += 0.01;
-      //   bubble.scale.z += 0.01;
+      bubbles.forEach((bubble) => {
+        bubble.scale.x += 0.01;
+        bubble.scale.y += 0.01;
+        bubble.scale.z += 0.01;
 
-      //   bubble.position.y += 0.02; // 위로 살짝 이동
-      // });
-
-      // 하트를 가로축으로 360도 회전
-      heart.rotation.x += 0.01;
-      heart.rotation.y += 0.01;
+        bubble.position.y += 0.02; // 위로 살짝 이동
+      });
 
       renderer.render(scene, camera);
     }
