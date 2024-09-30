@@ -32,13 +32,27 @@ export default function Home() {
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(
       75,
-      window.innerWidth / window.innerHeight,
+      (window.innerWidth * 0.7) / window.innerHeight,
       0.1,
       1000
     );
 
+    // 창 크기가 변경될 때 캔버스 크기도 업데이트
+    window.addEventListener("resize", () => {
+      // 브라우저 창의 크기에 맞게 canvas 크기 조정
+      const width = window.innerWidth * 0.7;
+      const height = window.innerHeight;
+
+      // 렌더러 크기 설정
+      renderer.setSize(width, height);
+
+      // 카메라 종횡비 업데이트
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+    });
+
     const renderer = new THREE.WebGLRenderer();
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(window.innerWidth * 0.7, window.innerHeight);
     renderer.setClearColor(0xffffff); // 배경색을 흰색으로 설정
     mount.appendChild(renderer.domElement); // mountRef에 렌더러 추가
 
