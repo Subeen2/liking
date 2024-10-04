@@ -67,7 +67,16 @@ export default function UserProfilePage({
             </div>
           </div>
         </div>
-        <h1>목록</h1>
+        <h1>리스트</h1>
+        <Image
+          src="/icons/heart.svg"
+          alt="하트모양 이모티콘"
+          width={20}
+          height={20}
+        />
+
+        <h1>팔로워 리스트</h1>
+        <h1>팔로잉 리스트</h1>
       </div>
     </div>
   );

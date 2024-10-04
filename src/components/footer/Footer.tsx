@@ -30,7 +30,7 @@ export default function Footer() {
                 </li> */}
             </ul>
           </nav>
-          <div className="flex flex-col justify-end">
+          {/* <div className="flex flex-col justify-end">
             <ul className="flex items-center justify-end text-[16px] gap-1">
               <li>
                 <a
@@ -70,7 +70,7 @@ export default function Footer() {
             <p className="mt-[10px] text-gray-3 text-[14px]">
               Copyright©라이킹
             </p>
-          </div>
+          </div> */}
         </div>
       </div>
     </footer>
