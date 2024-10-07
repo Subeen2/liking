@@ -4,14 +4,14 @@ import Image from "next/image";
 // import { Notify } from "notiflix";
 
 interface PropsType {
-  postId: string;
-  title: string;
-  content: string;
-  imgUrl: string;
+  postId?: string;
+  title?: string;
+  content?: string;
+  imgUrl?: string;
   onClose: () => void;
 }
 
-function ShareModal({ postId, title, content, imgUrl, onClose }: PropsType) {
+function Modal({ postId, title, content, imgUrl, onClose }: PropsType) {
   const copyUrlHandler = async () => {
     try {
       await navigator.clipboard.writeText(window.location.href);
@@ -66,4 +66,4 @@ function ShareModal({ postId, title, content, imgUrl, onClose }: PropsType) {
   );
 }
 
-export default ShareModal;
+export default Modal;

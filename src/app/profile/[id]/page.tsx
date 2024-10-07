@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Image from "next/image";
+import Modal from "@/components/modal/Modal";
 
 export default function UserProfilePage({
   params,
@@ -19,6 +20,8 @@ export default function UserProfilePage({
   const [isMounted, setIsMounted] = useState(false);
   // TODO :: 가독성 떨어지므로 데이터 형식 수정 필요
   const userUID = user.user?.user_uid;
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     setIsMounted(true); // 컴포넌트가 마운트된 이후에만 렌더링되도록 설정
@@ -44,7 +47,10 @@ export default function UserProfilePage({
   return (
     <div className="grid grid-cols-1 grid-rows-2 gap-5 px-44 py-10">
       <div>
-        <div className="flex rounded-xl shadow-md w-full h-48 p-10">
+        <div
+          className="flex rounded-xl shadow-md w-full h-48 p-10"
+          onClick={() => setIsModalOpen(true)}
+        >
           <div className="max-w-sm mx-10 p-6 bg-white rounded-full border-[0.5px] space-x-4 h-28 w-28">
             <Image
               src="/icons/face-smile-regular.svg"
@@ -78,6 +84,7 @@ export default function UserProfilePage({
         <h1>팔로워 리스트</h1>
         <h1>팔로잉 리스트</h1>
       </div>
+      {isModalOpen && <Modal onClose={() => setIsModalOpen(false)} />}
     </div>
   );
 }
