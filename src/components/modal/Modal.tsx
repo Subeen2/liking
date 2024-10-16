@@ -22,15 +22,15 @@ function Modal({ postId, title, content, imgUrl, onClose }: PropsType) {
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center z-[999]">
-      <div className="z-10 px-5 md:px-8 pb-6 md:pb-9 pt-3 md:pt-5 w-[343px] md:w-[544px] box-border bg-white rounded-2xl">
+    <div className="fixed inset-0 flex items-center justify-center z-[999] ">
+      <div className="shadow-lg z-10 px-5 md:px-8 pb-6 md:pb-9 pt-3 md:pt-5 w-[343px] md:w-[544px] box-border bg-white rounded-2xl">
         <div className="flex justify-end">
           <button onClick={onClose}>
             <Image
-              src="/img/icon-delete.png"
+              src="/icons/close.svg"
               alt="모달 닫기 버튼"
-              width={24}
-              height={24}
+              width={20}
+              height={20}
             />
           </button>
         </div>
