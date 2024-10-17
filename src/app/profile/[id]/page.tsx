@@ -75,8 +75,16 @@ export default function UserProfilePage({
         </div>
         <h1>리스트</h1>
         <Image
+          className="cursor-pointer"
           src="/icons/heart.svg"
           alt="하트모양 이모티콘"
+          width={20}
+          height={20}
+        />
+        <Image
+          className="cursor-pointer"
+          src="/icons/heart-filled.svg"
+          alt="채워진 하트모양 이모티콘"
           width={20}
           height={20}
         />
