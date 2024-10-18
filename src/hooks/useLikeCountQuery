@@ -1,0 +1,10 @@
+// TODO:: 프로필 타입 설정하기
+type ProfileType = {};
+
+type MutationContext = {
+  previousProfiles: ProfileType[] | [];
+};
+
+const useLikeCountQuery = () => {};
+
+export default useLikeCountQuery;
