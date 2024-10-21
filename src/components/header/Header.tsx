@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { logout } from "@/app/lib/features/userAuth/userAuthSlice";
 import { useRouter } from "next/navigation";
 import { RootState } from "@/app/lib/store";
+import Image from "next/image";
 
 export default function Header() {
   const user = useSelector((state: RootState) => state.userAuth);
@@ -41,8 +42,16 @@ export default function Header() {
                 </span>
               </a>
             </li>
-            <li>
+            <li className="flex gap-1 group">
               <button onClick={handleLogout}>로그아웃</button>
+
+              <Image
+                src="/icons/log-out.svg"
+                alt="로그아웃 아이콘"
+                width={11}
+                height={11}
+                className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none"
+              />
             </li>
           </ul>
         ) : (
