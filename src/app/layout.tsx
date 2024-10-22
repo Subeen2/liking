@@ -3,6 +3,7 @@ import Footer from "@/components/footer/Footer";
 import Header from "@/components/header/Header";
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
+import Head from "next/head";
 import ClientLayout from "./ClientLayout";
 import "./globals.css";
 
@@ -26,6 +27,9 @@ const RootLayout = ({
   // TODO :: 일단 header, footer 여기에 두고 페이지 별로 헤더 푸터 유동적으로 사용해야 하는지 판단 후 구조 변경
   return (
     <html lang="en">
+      <Head>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <body className={inter.className}>
         <ClientLayout>
           <TopBandBanner
