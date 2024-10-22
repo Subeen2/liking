@@ -1,3 +1,4 @@
+import TopBandBanner from "@/components/banner/TopBandBanner";
 import Footer from "@/components/footer/Footer";
 import Header from "@/components/header/Header";
 import type { Metadata, Viewport } from "next";
@@ -27,6 +28,11 @@ const RootLayout = ({
     <html lang="en">
       <body className={inter.className}>
         <ClientLayout>
+          <TopBandBanner
+            title={"오늘의 추천 키워드"}
+            contentArr={["MVVM 패턴", "Flex 패턴"]}
+            isRandom={true}
+          />
           <Header />
           {children}
         </ClientLayout>

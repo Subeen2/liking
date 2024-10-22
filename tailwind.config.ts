@@ -42,10 +42,15 @@ const config: Config = {
             opacity: "0", // 투명하게 사라짐
           },
         },
+        reveal: {
+          "0%": { transform: "translateY(100%)" },
+          "100%": { transform: "translateY(0)" },
+        },
       },
       animation: {
         wiggle: "wiggle 1s ease-in-out infinite",
-        bubble: 'bubble 3s ease-in-out infinite', 
+        bubble: "bubble 3s ease-in-out infinite",
+        reveal: "reveal 3s cubic-bezier(0.77, 0, 0.175, 1) forwards infinite",
       },
     },
   },
