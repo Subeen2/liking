@@ -68,14 +68,14 @@ export default function Header() {
       <div className="container mx-auto w-full max-w-[1024px] flex justify-between items-center py-[18px] px-[16px] lg:px-0">
         <h1 className="text-[30px] font-extrabold">
           <a href="/">
-            <img
+            <Image
               alt="라이킹 로고"
               loading="lazy"
-              width="90"
+              width="110"
               height="42"
               decoding="async"
               data-nimg="1"
-              src="/img/logo.svg?width=256&amp;quality=75"
+              src="/logos/main-logo.png"
             />
           </a>
         </h1>
