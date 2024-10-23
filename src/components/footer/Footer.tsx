@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -6,15 +7,14 @@ export default function Footer() {
       <div className="container mx-auto w-full max-w-[1024px] px-[16px] lg:px-0">
         <h1 className="text-[20px] font-bold">
           <a href="/">
-            <img
-              alt="라이킹"
+            <Image
+              alt="라이킹 로고"
               loading="lazy"
-              width="0"
-              height="0"
+              width="110"
+              height="42"
               decoding="async"
               data-nimg="1"
-              className="w-[80px] h-auto"
-              src="/img/logo-footer.svg?width=16&amp;quality=75"
+              src="/logos/main-logo.png"
             />
           </a>
         </h1>
