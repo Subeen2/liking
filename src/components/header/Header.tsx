@@ -30,7 +30,7 @@ export default function Header() {
   }
 
   return (
-    <header className="bg-second100 mb-[100px]">
+    <header className="bg-second100">
       <div className="hidden md:block">
         {user.isAuthenticated === true ? (
           <ul className="container mx-auto w-full max-w-[1024px] flex items-center justify-end gap-5 py-[18px] text-[13px] text-gray-4 text-black px-[16px] lg:px-0">

@@ -4,8 +4,10 @@ import { RootState } from "@/app/lib/store";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import Image from "next/image";
+
 import Modal from "@/components/modal/Modal";
+import Image from "next/image";
+import ProfileCard from "@/components/card/ProfileCard/ProfileCard";
 
 export default function UserProfilePage({
   params,
@@ -47,32 +49,12 @@ export default function UserProfilePage({
   return (
     <div className="grid grid-cols-1 grid-rows-2 gap-5 px-44 py-10">
       <div>
-        <div
-          className="flex rounded-xl shadow-md w-full h-48 p-10"
-          onClick={() => setIsModalOpen(true)}
-        >
-          <div className="max-w-sm mx-10 p-6 bg-white rounded-full border-[0.5px] space-x-4 h-28 w-28">
-            <Image
-              src="/icons/face-smile-regular.svg"
-              alt="유저 이미지"
-              width={30}
-              height={30}
-            />
-          </div>
-          <div className="flex-row gap-2">
-            <h2>
-              <strong>{user.user?.nickname}</strong>
-            </h2>
-            <p>이메일: {user.user?.email}</p>
-
-            <a href={`/profile/${id}/edit`}>Edit Profile</a>
-            <div className="flex gap-5">
-              <p>팔로워</p>
-              <p>팔로잉</p>
-              <p>즐겨찾기</p>
-            </div>
-          </div>
-        </div>
+        <ProfileCard
+          nickname={user.user?.nickname}
+          email={user.user?.email}
+          id={id}
+          cardClickHandler={() => setIsModalOpen(true)}
+        />
         <h1>리스트</h1>
         <Image
           className="cursor-pointer"
