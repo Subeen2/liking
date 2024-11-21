@@ -12,22 +12,12 @@ export default function Header() {
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const [isMounted, setIsMounted] = useState(false);
   const userUID = user.user?.user_uid;
-
-  useEffect(() => {
-    setIsMounted(true); // 컴포넌트가 마운트된 이후에만 렌더링되도록 설정
-  }, []);
 
   const handleLogout = () => {
     dispatch(logout());
     router.push("/login");
   };
-
-  if (!isMounted) {
-    // 서버와 클라이언트가 일치할 때까지 아무것도 렌더링하지 않음
-    return null;
-  }
 
   return (
     <header className="bg-second100">
