@@ -1,6 +1,6 @@
 // pages/api/signup.ts
 
-// import bcrypt from "bcrypt";
+import bcrypt from "bcrypt";
 
 export async function POST(request: Request) {
   const { email, password, nickname } = await request.json();
@@ -29,7 +29,7 @@ export async function POST(request: Request) {
   }
 
   // 비밀번호 해싱
-  //   const hashedPassword = await bcrypt.hash(password, 10);
+  const hashedPassword = await bcrypt.hash(password, 10);
 
   // 디비에 저장
 
