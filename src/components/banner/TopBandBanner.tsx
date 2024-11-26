@@ -1,10 +1,10 @@
-export type TopBandBannerT = {
+export interface TopBandBannerI {
   title: string;
   contentArr: string[];
   isRandom?: boolean;
-};
+}
 
-const TopBandBanner = ({ title, contentArr, isRandom }: TopBandBannerT) => {
+const TopBandBanner = ({ title, contentArr, isRandom }: TopBandBannerI) => {
   const randomIndex = Math.floor(Math.random() * contentArr?.length);
 
   return (
